@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+
+  web:
+    build: .
+    volumes:
+      - ".:/app"
+    environment:
+      PACT_BROKER_BASE_URL:  'http://pactbroker.dmuso.com/'
+      RACK_ENV: development
+    ports:
+      - "8080:80"
+    command: rackup
+
+  test:
+    build: .
+    volumes:
+      - ".:/app"
+    environment:
+      PACT_BROKER_BASE_URL:  'http://pactbroker.dmuso.com/'
+      RACK_ENV: test
+    command: rake

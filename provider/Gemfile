@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+
+group :development, :test do
+  gem 'rspec'
+  gem 'pact'
+  gem 'pry'
+end
+
+gem 'rake'
+gem 'json'
+gem 'sinatra'

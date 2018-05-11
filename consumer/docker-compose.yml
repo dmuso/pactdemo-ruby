@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+
+  web:
+    build: .
+    volumes:
+      - ".:/app"
+    environment:
+      PACT_BROKER_BASE_URL:  'http://pactbroker.dmuso.com/'
+      RACK_ENV: development
+    command: ruby -r "./lib/consume.rb" -e "Consume.get_people"
+
+  test:
+    build: .
+    volumes:
+      - ".:/app"
+    environment:
+      PACT_BROKER_BASE_URL:  'http://pactbroker.dmuso.com/'
+      RACK_ENV: test
+    command: rake

@@ -1,0 +1,14 @@
+$: << File.join(File.dirname(__FILE__), "lib")
+
+require 'rspec/core/rake_task'
+require 'pact_broker/client/tasks'
+
+RSpec::Core::RakeTask.new(:spec)
+
+PactBroker::Client::PublicationTask.new do | task |
+  require 'consumer/version'
+  task.consumer_version = Consumer::VERSION
+  task.pact_broker_base_url = ENV['PACT_BROKER_BASE_URL']
+end
+
+task :default => :spec
